@@ -9,18 +9,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Celda(texto: String, modifier: Modifier = Modifier) {
+fun Celda(texto: String, esPista: Boolean, colorFondo: Color, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .background(Color.White)
+            .background(colorFondo)
             .border(0.5.dp, Color.Gray),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = texto, fontSize = 20.sp)
+        Text(
+            text = texto,
+            fontSize = 20.sp,
+            fontWeight = if (esPista) FontWeight.Bold else FontWeight.Normal,
+            color = if (esPista) Color.Black else Color(0xFF1565C0)
+        )
     }
 }
