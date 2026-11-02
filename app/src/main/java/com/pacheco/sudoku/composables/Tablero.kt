@@ -45,8 +45,14 @@ fun Tablero() {
             .padding(3.dp)
     ) {
         for (fila in 0 until 9) {
+            if (fila % 3 == 0 && fila != 0) {
+                Spacer(modifier = Modifier.height(3.dp))
+            }
             Row(modifier = Modifier.fillMaxWidth()) {
                 for (columna in 0 until 9) {
+                    if (columna % 3 == 0 && columna != 0) {
+                        Spacer(modifier = Modifier.width(3.dp))
+                    }
                     val numeroInicial = sudoku[fila * 9 + columna].digitToInt()
                     val numeroJugador = numerosJugador[fila to columna]
 
