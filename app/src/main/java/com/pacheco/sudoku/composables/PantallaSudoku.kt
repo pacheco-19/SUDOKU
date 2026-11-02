@@ -26,6 +26,7 @@ fun PantallaSudoku() {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(text = "Sudoku", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+            Cabecera()
         }
     }
 }
