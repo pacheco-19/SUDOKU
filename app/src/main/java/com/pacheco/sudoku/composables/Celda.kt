@@ -12,6 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pacheco.sudoku.ui.theme.IndigoClaro
+import com.pacheco.sudoku.ui.theme.IndigoOscuro
+import com.pacheco.sudoku.ui.theme.NumeroJugador
 
 @Composable
 fun Celda(texto: String, esPista: Boolean, colorFondo: Color, modifier: Modifier = Modifier) {
@@ -19,14 +22,14 @@ fun Celda(texto: String, esPista: Boolean, colorFondo: Color, modifier: Modifier
         modifier = modifier
             .aspectRatio(1f)
             .background(colorFondo)
-            .border(0.5.dp, Color.Gray),
+            .border(0.5.dp, IndigoClaro),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = texto,
-            fontSize = 20.sp,
-            fontWeight = if (esPista) FontWeight.Bold else FontWeight.Normal,
-            color = if (esPista) Color.Black else Color(0xFF1565C0)
+            fontSize = 22.sp,
+            fontWeight = if (esPista) FontWeight.Bold else FontWeight.SemiBold,
+            color = if (esPista) IndigoOscuro else NumeroJugador
         )
     }
 }

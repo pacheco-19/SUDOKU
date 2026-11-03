@@ -2,10 +2,16 @@ package com.pacheco.sudoku.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.pacheco.sudoku.ui.theme.CeldaRelacionada
+import com.pacheco.sudoku.ui.theme.CeldaSeleccionada
+import com.pacheco.sudoku.ui.theme.CeldaSuave
+import com.pacheco.sudoku.ui.theme.LineaTablero
 
 // Sudoku de ejemplo: 81 caracteres, "0" = casilla vacía
 val sudoku = "530070000600195000098000060800060003400803001700020006060000280000419005000080079"
@@ -25,13 +31,15 @@ val numerosJugador = mapOf(
 val filaSeleccionada = 4
 val columnaSeleccionada = 4
 
-// Color de fondo: la celda seleccionada, y su fila, columna y bloque
+// Color de fondo de cada celda
 fun colorDeFondo(fila: Int, columna: Int): Color {
     val mismoBloque = fila / 3 == filaSeleccionada / 3 &&
             columna / 3 == columnaSeleccionada / 3
+    val bloqueSuave = (fila / 3 + columna / 3) % 2 == 1
     return when {
-        fila == filaSeleccionada && columna == columnaSeleccionada -> Color(0xFFBBDEFB)
-        fila == filaSeleccionada || columna == columnaSeleccionada || mismoBloque -> Color(0xFFE3EAF5)
+        fila == filaSeleccionada && columna == columnaSeleccionada -> CeldaSeleccionada
+        fila == filaSeleccionada || columna == columnaSeleccionada || mismoBloque -> CeldaRelacionada
+        bloqueSuave -> CeldaSuave
         else -> Color.White
     }
 }
@@ -41,15 +49,18 @@ fun Tablero() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF37474F))
+            .shadow(8.dp, RoundedCornerShape(12.dp))
+            .background(LineaTablero)
             .padding(3.dp)
     ) {
         for (fila in 0 until 9) {
+            // Línea gruesa antes de las filas 3 y 6
             if (fila % 3 == 0 && fila != 0) {
                 Spacer(modifier = Modifier.height(3.dp))
             }
             Row(modifier = Modifier.fillMaxWidth()) {
                 for (columna in 0 until 9) {
+                    // Línea gruesa antes de las columnas 3 y 6
                     if (columna % 3 == 0 && columna != 0) {
                         Spacer(modifier = Modifier.width(3.dp))
                     }
