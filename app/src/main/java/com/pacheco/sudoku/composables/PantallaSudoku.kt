@@ -28,6 +28,7 @@ fun PantallaSudoku() {
             Text(text = "Sudoku", fontSize = 28.sp, fontWeight = FontWeight.Bold)
             Cabecera()
             Tablero()
+            Acciones()
         }
     }
 }
