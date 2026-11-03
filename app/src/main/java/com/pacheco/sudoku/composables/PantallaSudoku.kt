@@ -29,6 +29,7 @@ fun PantallaSudoku() {
             Cabecera()
             Tablero()
             Acciones()
+            Teclado()
         }
     }
 }
